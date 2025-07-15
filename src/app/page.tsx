@@ -6,8 +6,18 @@ import { CourseCard } from '@/components/course-card';
 import { courses } from '@/lib/data';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 export default function Home() {
+  const coursesByCategory = courses.reduce((acc, course) => {
+    const category = course.category;
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(course);
+    return acc;
+  }, {} as Record<string, typeof courses>);
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="relative mb-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl shadow-lg">
@@ -36,13 +46,29 @@ export default function Home() {
         </div>
       </div>
 
-      <section id="courses">
-        <h2 className="font-headline text-3xl font-bold mb-8 text-center">My Courses</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {courses.map((course) => (
-            <CourseCard key={course.id} course={course} />
-          ))}
-        </div>
+      <section id="courses" className="space-y-12">
+        {Object.entries(coursesByCategory).map(([category, categoryCourses]) => (
+          <div key={category}>
+            <h2 className="font-headline text-2xl font-bold mb-6">{category}</h2>
+            <Carousel
+              opts={{
+                align: 'start',
+                dragFree: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-4">
+                {categoryCourses.map((course) => (
+                  <CarouselItem key={course.id} className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-4">
+                    <CourseCard course={course} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="hidden md:flex" />
+              <CarouselNext className="hidden md:flex" />
+            </Carousel>
+          </div>
+        ))}
       </section>
     </div>
   );
