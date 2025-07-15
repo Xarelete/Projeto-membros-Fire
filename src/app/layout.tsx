@@ -6,7 +6,7 @@ import { SiteHeader } from '@/components/site-header';
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'LearnHub',
+  title: 'Veolab Academy',
   description: 'Your modern online learning platform.',
 };
 

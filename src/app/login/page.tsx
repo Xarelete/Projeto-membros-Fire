@@ -44,7 +44,7 @@ export default function LoginPage() {
         <CardHeader className="space-y-1 text-center">
           <div className="flex justify-center items-center gap-2 mb-4">
             <GraduationCap className="h-8 w-8 text-primary" />
-            <span className="text-2xl font-bold font-headline">LearnHub</span>
+            <span className="text-2xl font-bold font-headline">Veolab Academy</span>
           </div>
           <CardTitle className="text-2xl font-headline">Acesse sua conta</CardTitle>
         </CardHeader>
