@@ -1,3 +1,5 @@
+// This component is no longer used in the new lesson page layout.
+// You can safely delete it if it's not used anywhere else.
 export function CourseLayout({
   sidebar,
   children,
