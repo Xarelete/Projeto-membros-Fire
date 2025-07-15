@@ -16,6 +16,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { GraduationCap } from 'lucide-react';
+import { useAuth } from '@/components/providers';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Por favor, insira um email válido.' }),
@@ -23,6 +25,9 @@ const formSchema = z.object({
 });
 
 export default function LoginPage() {
+  const { login } = useAuth();
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -32,10 +37,9 @@ export default function LoginPage() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Aqui você pode adicionar a lógica de autenticação
     console.log('Login data:', values);
-    // Por exemplo, redirecionar para a página de cursos após o login
-    // router.push('/');
+    login();
+    router.push('/');
   }
 
   return (

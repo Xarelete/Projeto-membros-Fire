@@ -14,10 +14,12 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, ArrowRight, Star } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
+import { useAuth } from '@/components/providers';
 
 export default function LessonPage({ params }: { params: Promise<{ courseId: string, lessonId: string }> }) {
   const { courseId, lessonId } = use(params);
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
 
   const [course, setCourse] = useState<(typeof courses)[0] | undefined>(undefined);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
@@ -29,20 +31,23 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
     const foundCourse = courses.find((c) => c.id === courseId);
     if (foundCourse) {
       setCourse(foundCourse);
-      const lessonAndModule = findLessonAndModule(foundCourse, lessonId);
-      if (lessonAndModule) {
-        setActiveLesson(lessonAndModule.lesson);
-        setActiveModule(lessonAndModule.module);
-        // Save the last watched lesson
-        localStorage.setItem('lastWatchedLesson', JSON.stringify({ courseId, lessonId }));
+      if (isAuthenticated && foundCourse.purchased) {
+        const lessonAndModule = findLessonAndModule(foundCourse, lessonId);
+        if (lessonAndModule) {
+          setActiveLesson(lessonAndModule.lesson);
+          setActiveModule(lessonAndModule.module);
+          localStorage.setItem('lastWatchedLesson', JSON.stringify({ courseId, lessonId }));
+        } else {
+          notFound();
+        }
       } else {
-        notFound();
+        router.replace(`/courses/${courseId}`);
       }
     } else {
       notFound();
     }
     setIsLoading(false);
-  }, [courseId, lessonId]);
+  }, [courseId, lessonId, isAuthenticated, router]);
 
   const findLessonAndModule = (courseToSearch: (typeof courses)[0], lessonIdToFind: string): { lesson: Lesson, module: Module } | null => {
       for (const module of courseToSearch.modules) {
@@ -92,8 +97,8 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
     );
   }
 
-  if (!course || !course.purchased) {
-    // Redirect to preview page if not purchased
+  if (!isAuthenticated || !course || !course.purchased) {
+    // This will redirect them to the course preview page which handles the login/purchase logic
     router.replace(`/courses/${courseId}`);
     return null;
   }
@@ -176,6 +181,7 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
               activeLessonId={activeLesson.id}
               onLessonClick={handleLessonClick}
               completedLessons={completedLessons}
+              isLocked={false}
             />
           </div>
         </TabsContent>

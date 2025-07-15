@@ -11,10 +11,14 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Lock, PlayCircle, Star } from 'lucide-react';
 import { CourseProgress } from '@/components/course-progress';
+import { useAuth } from '@/components/providers';
+import Link from 'next/link';
 
 export default function CoursePreviewPage({ params }: { params: Promise<{ courseId: string }> }) {
   const { courseId } = use(params);
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
+
   const [course, setCourse] = useState<(typeof courses)[0] | undefined>(undefined);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,8 +54,11 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
   const totalLessons = course.modules.reduce((acc, module) => acc + module.lessons.length, 0);
 
   const handlePrimaryAction = () => {
+    if (!isAuthenticated) {
+        router.push('/login');
+        return;
+    }
     if (course.purchased) {
-        // Find first lesson to navigate to
         const firstLesson = course.modules?.[0]?.lessons?.[0];
         if (firstLesson) {
             router.push(`/courses/${course.id}/lessons/${firstLesson.id}`);
@@ -62,13 +69,14 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
   }
 
   const handleLessonClick = (lesson: Lesson) => {
-    if (course.purchased) {
+    if (isAuthenticated && course.purchased) {
         router.push(`/courses/${course.id}/lessons/${lesson.id}`);
     } else {
-        // Optionally, trigger a purchase modal or scroll to the purchase button
-        console.log("Purchase required to view lesson.");
+        router.push('/login');
     }
   }
+
+  const isLockedForUser = !isAuthenticated || !course.purchased;
 
   return (
     <div className="container mx-auto py-8">
@@ -105,27 +113,36 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
                     activeLessonId={null} // No active lesson on preview page
                     onLessonClick={handleLessonClick}
                     completedLessons={completedLessons}
-                    isLocked={!course.purchased}
+                    isLocked={isLockedForUser}
                 />
             </div>
             <div className='lg:col-span-1'>
                 <div className='sticky top-24 bg-card p-6 rounded-2xl border shadow-lg'>
-                     <Button 
-                        size="lg" 
-                        className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg"
-                        onClick={handlePrimaryAction}
-                    >
-                        {course.purchased ? (
-                            <>
-                                Start Course <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                            </>
-                        ) : (
-                            <>
-                                Buy Now <Lock className="ml-2 h-5 w-5" />
-                            </>
-                        )}
-                    </Button>
-                    {course.purchased && <CourseProgress course={course} />}
+                    { !isAuthenticated ? (
+                       <Button asChild size="lg" className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg">
+                           <Link href="/login">
+                                Login to Access <Lock className="ml-2 h-5 w-5" />
+                           </Link>
+                       </Button>
+                    ) : (
+                        <Button 
+                            size="lg" 
+                            className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg"
+                            onClick={handlePrimaryAction}
+                        >
+                            {course.purchased ? (
+                                <>
+                                    Start Course <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                </>
+                            ) : (
+                                <>
+                                    Buy Now <Lock className="ml-2 h-5 w-5" />
+                                </>
+                            )}
+                        </Button>
+                    )}
+
+                    {isAuthenticated && course.purchased && <CourseProgress course={course} />}
                 </div>
             </div>
         </div>

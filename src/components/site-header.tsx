@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { GraduationCap, LogIn, LogOut, User } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
@@ -11,9 +13,10 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { Button } from './ui/button';
+import { useAuth } from './providers';
 
 export function SiteHeader() {
-  const isAuthenticated = false; // Defina como true quando o usuário estiver autenticado
+  const { isAuthenticated, logout } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -43,7 +46,7 @@ export function SiteHeader() {
                   <User className="mr-2 h-4 w-4" />
                   <span>Perfil</span>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={logout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Sair</span>
                 </DropdownMenuItem>
