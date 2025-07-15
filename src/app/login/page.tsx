@@ -1,0 +1,89 @@
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import * as z from 'zod';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { GraduationCap } from 'lucide-react';
+
+const formSchema = z.object({
+  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
+  password: z.string().min(1, { message: 'A senha é obrigatória.' }),
+});
+
+export default function LoginPage() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Aqui você pode adicionar a lógica de autenticação
+    console.log('Login data:', values);
+    // Por exemplo, redirecionar para a página de cursos após o login
+    // router.push('/');
+  }
+
+  return (
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center p-4">
+      <Card className="w-full max-w-md shadow-2xl">
+        <CardHeader className="space-y-1 text-center">
+          <div className="flex justify-center items-center gap-2 mb-4">
+            <GraduationCap className="h-8 w-8 text-primary" />
+            <span className="text-2xl font-bold font-headline">LearnHub</span>
+          </div>
+          <CardTitle className="text-2xl font-headline">Acesse sua conta</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="seu@email.com" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Senha</FormLabel>
+                    <FormControl>
+                      <Input type="password" placeholder="********" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button type="submit" className="w-full !mt-8 font-bold">
+                Entrar
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
