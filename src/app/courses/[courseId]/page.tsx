@@ -1,171 +1,134 @@
 'use client';
 
-import { useState, useEffect, use, useMemo } from 'react';
-import { notFound } from 'next/navigation';
+import { useState, useEffect, use } from 'react';
+import { notFound, useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { courses } from '@/lib/data';
 import { type Lesson, type Module } from '@/lib/types';
 import { useProgress } from '@/hooks/use-progress';
 import { CourseSidebar } from '@/components/course-sidebar';
-import { LessonContent } from '@/components/lesson-content';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { VideoPlayer } from '@/components/video-player';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight, Star } from 'lucide-react';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
+import { ArrowRight, Lock, PlayCircle, Star } from 'lucide-react';
+import { CourseProgress } from '@/components/course-progress';
 
-export default function CoursePage({ params }: { params: Promise<{ courseId: string }> }) {
+export default function CoursePreviewPage({ params }: { params: Promise<{ courseId: string }> }) {
   const { courseId } = use(params);
+  const router = useRouter();
   const [course, setCourse] = useState<(typeof courses)[0] | undefined>(undefined);
-  const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
-  const [activeModule, setActiveModule] = useState<Module | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('content');
 
   useEffect(() => {
     const foundCourse = courses.find((c) => c.id === courseId);
-    if (foundCourse) {
-      setCourse(foundCourse);
-      if (foundCourse.modules.length > 0) {
-        const firstModule = foundCourse.modules[0];
-        setActiveModule(firstModule);
-        if (firstModule.lessons.length > 0) {
-          setActiveLesson(firstModule.lessons[0]);
-        }
-      }
-    }
+    setCourse(foundCourse);
     setIsLoading(false);
   }, [courseId]);
-  
-  const { completedLessons, toggleLessonCompleted } = useProgress(courseId, course);
 
-  const allLessons = useMemo(() => {
-    return course?.modules.flatMap(module => module.lessons) || [];
-  }, [course]);
-
-  const activeLessonIndex = useMemo(() => {
-    if (!activeLesson) return -1;
-    return allLessons.findIndex(l => l.id === activeLesson.id);
-  }, [activeLesson, allLessons]);
-
-  const previousLesson = activeLessonIndex > 0 ? allLessons[activeLessonIndex - 1] : null;
-  const nextLesson = activeLessonIndex < allLessons.length - 1 ? allLessons[activeLessonIndex + 1] : null;
-
-  const goToLesson = (lesson: Lesson | null) => {
-    if (lesson && course) {
-      const moduleForLesson = course.modules.find(m => m.lessons.some(l => l.id === lesson.id));
-      setActiveLesson(lesson);
-      if (moduleForLesson) {
-        setActiveModule(moduleForLesson);
-      }
-      setActiveTab('content');
-    }
-  };
-
-  const handleLessonClick = (lesson: Lesson) => {
-      goToLesson(lesson);
-  }
+  const { completedLessons } = useProgress(courseId, course);
 
   if (isLoading) {
     return (
       <div className="container mx-auto p-4 md:p-8">
-        <div className="space-y-4">
-            <Skeleton className="w-full aspect-video rounded-xl" />
-            <Skeleton className="h-10 w-48" />
-            <Skeleton className="h-8 w-96" />
-            <Skeleton className="w-full h-64 rounded-xl" />
+        <div className="flex flex-col lg:flex-row gap-8">
+            <div className="lg:w-2/3 space-y-4">
+                <Skeleton className="w-full aspect-video rounded-xl" />
+                <Skeleton className="h-12 w-64" />
+                <Skeleton className="h-8 w-96" />
+            </div>
+            <div className="lg:w-1/3 space-y-4">
+                 <Skeleton className="w-full h-96 rounded-xl" />
+            </div>
         </div>
       </div>
     );
   }
 
-  if (!course || !course.purchased) {
+  if (!course) {
     notFound();
   }
+  
+  const totalLessons = course.modules.reduce((acc, module) => acc + module.lessons.length, 0);
 
-  if (!activeLesson || !activeModule) {
-    return (
-      <div className="container mx-auto p-4 md:p-8">
-        <div className="text-center">
-            <h2 className="text-2xl font-headline font-bold">Welcome to {course.title}</h2>
-            <p className="text-muted-foreground mt-2">This course doesn't have any lessons yet.</p>
-        </div>
-      </div>
-    );
+  const handlePrimaryAction = () => {
+    if (course.purchased) {
+        // Find first lesson to navigate to
+        const firstLesson = course.modules?.[0]?.lessons?.[0];
+        if (firstLesson) {
+            router.push(`/courses/${course.id}/lessons/${firstLesson.id}`);
+        }
+    } else if (course.checkoutUrl) {
+        window.location.href = course.checkoutUrl;
+    }
   }
 
-  const isCompleted = completedLessons.has(activeLesson.id);
+  const handleLessonClick = (lesson: Lesson) => {
+    if (course.purchased) {
+        router.push(`/courses/${course.id}/lessons/${lesson.id}`);
+    } else {
+        // Optionally, trigger a purchase modal or scroll to the purchase button
+        console.log("Purchase required to view lesson.");
+    }
+  }
 
   return (
-    <div className="container mx-auto p-4 md:p-8">
-      <div className="relative mb-6">
-        <VideoPlayer videoId={activeLesson.videoId} title={activeLesson.title} />
-        <Button 
-            onClick={() => goToLesson(previousLesson)} 
-            disabled={!previousLesson}
-            variant="ghost"
-            size="icon"
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/30 text-white hover:bg-black/50 hover:text-white disabled:hidden"
-        >
-            <ArrowLeft className="h-6 w-6" />
-        </Button>
-        <Button 
-            onClick={() => goToLesson(nextLesson)} 
-            disabled={!nextLesson}
-            variant="ghost"
-            size="icon"
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/30 text-white hover:bg-black/50 hover:text-white disabled:hidden"
-        >
-            <ArrowRight className="h-6 w-6" />
-        </Button>
-      </div>
-
-      <div>
-        <h2 className="text-sm font-bold uppercase text-muted-foreground tracking-wider">{activeModule.title}</h2>
-        <h1 className="text-2xl md:text-3xl font-headline font-bold mt-1">{activeLesson.title}</h1>
-      </div>
-
-      <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
-        <div className="flex items-center justify-between">
-            <TabsList>
-              <TabsTrigger value="lessons">Aulas</TabsTrigger>
-              <TabsTrigger value="content">Conteúdo</TabsTrigger>
-            </TabsList>
+    <div className="container mx-auto py-8">
+        <div className="relative mb-8 h-80 md:h-[450px] w-full overflow-hidden rounded-3xl shadow-2xl flex items-end">
+          <Image
+            src={course.bannerUrl.replace('225x400', '1200x400')}
+            alt={`${course.title} Banner`}
+            data-ai-hint="online course abstract"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+          <div className="relative p-8 md:p-12 text-white">
+            <h1 className="font-headline text-4xl md:text-6xl font-bold mb-3 drop-shadow-lg">
+              {course.title}
+            </h1>
+            <p className="text-base md:text-lg max-w-3xl font-body drop-shadow-md mb-6">
+              {course.description}
+            </p>
             <div className='flex items-center gap-4'>
-                <Button variant="ghost" size="icon">
-                    <Star className="h-5 w-5" />
-                    <span className="sr-only">Favorite</span>
-                </Button>
-                <div className="flex items-center space-x-2">
-                    <Checkbox
-                      id={`completed-${activeLesson.id}`}
-                      checked={isCompleted}
-                      onCheckedChange={() => toggleLessonCompleted(activeLesson.id)}
-                    />
-                    <Label htmlFor={`completed-${activeLesson.id}`} className="text-sm font-medium leading-none cursor-pointer">
-                      Mark as Completed
-                    </Label>
+                <p className="font-semibold">{course.modules.length} Modules</p>
+                <span className="text-white/50">&bull;</span>
+                <p className="font-semibold">{totalLessons} Lessons</p>
+            </div>
+          </div>
+        </div>
+
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
+            <div className='lg:col-span-2 space-y-6'>
+                <h2 className='font-headline text-3xl font-bold'>Course Content</h2>
+                <CourseSidebar 
+                    courseId={course.id}
+                    modules={course.modules}
+                    activeLessonId={null} // No active lesson on preview page
+                    onLessonClick={handleLessonClick}
+                    completedLessons={completedLessons}
+                    isLocked={!course.purchased}
+                />
+            </div>
+            <div className='lg:col-span-1'>
+                <div className='sticky top-24 bg-card p-6 rounded-2xl border shadow-lg'>
+                     <Button 
+                        size="lg" 
+                        className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg"
+                        onClick={handlePrimaryAction}
+                    >
+                        {course.purchased ? (
+                            <>
+                                Start Course <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                            </>
+                        ) : (
+                            <>
+                                Buy Now <Lock className="ml-2 h-5 w-5" />
+                            </>
+                        )}
+                    </Button>
+                    {course.purchased && <CourseProgress course={course} />}
                 </div>
             </div>
         </div>
-        <TabsContent value="content" className="mt-4">
-            <LessonContent
-                lesson={activeLesson}
-            />
-        </TabsContent>
-        <TabsContent value="lessons" className="mt-4">
-          <div className="max-w-3xl">
-            <CourseSidebar
-              courseId={course.id}
-              modules={course.modules}
-              activeLessonId={activeLesson.id}
-              onLessonClick={handleLessonClick}
-              completedLessons={completedLessons}
-            />
-          </div>
-        </TabsContent>
-      </Tabs>
     </div>
   );
 }

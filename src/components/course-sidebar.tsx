@@ -5,8 +5,9 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { CheckCircle, Circle, Play } from 'lucide-react';
+import { CheckCircle, Circle, Lock, Play } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 type CourseSidebarProps = {
   courseId: string;
@@ -14,6 +15,7 @@ type CourseSidebarProps = {
   activeLessonId: string | null;
   onLessonClick: (lesson: Lesson) => void;
   completedLessons: Set<string>;
+  isLocked?: boolean;
 };
 
 export function CourseSidebar({
@@ -21,6 +23,7 @@ export function CourseSidebar({
   activeLessonId,
   onLessonClick,
   completedLessons,
+  isLocked = false,
 }: CourseSidebarProps) {
   
   const defaultOpenModule = modules.find(m => m.lessons.some(l => l.id === activeLessonId))?.id;
@@ -28,35 +31,41 @@ export function CourseSidebar({
   return (
       <Accordion type="single" collapsible defaultValue={defaultOpenModule ? `module-${defaultOpenModule}`: undefined} className="w-full">
         {modules.map((module) => (
-          <AccordionItem key={module.id} value={`module-${module.id}`}>
-            <AccordionTrigger className="font-headline text-lg hover:no-underline">
+          <AccordionItem key={module.id} value={`module-${module.id}`} className="border rounded-2xl overflow-hidden mb-4 shadow-sm bg-card">
+            <AccordionTrigger className="font-headline text-lg hover:no-underline p-4">
               {module.title}
             </AccordionTrigger>
             <AccordionContent>
-              <ul className="space-y-1">
+              <ul className="space-y-1 p-2">
                 {module.lessons.map((lesson) => {
                   const isCompleted = completedLessons.has(lesson.id);
                   const isActive = activeLessonId === lesson.id;
-                  const Icon = isCompleted ? CheckCircle : Circle;
-
+                  
+                  let Icon = Circle;
+                  if (isLocked) Icon = Lock;
+                  else if (isCompleted) Icon = CheckCircle;
+                  
                   return (
                     <li key={lesson.id}>
                       <button
                         onClick={() => onLessonClick(lesson)}
+                        disabled={isLocked && !lesson.preview}
                         className={cn(
                           'w-full text-left p-3 rounded-lg flex items-center gap-3 transition-colors duration-200',
                           isActive
                             ? 'bg-primary/10 text-primary font-semibold'
                             : 'hover:bg-muted/50',
+                          isLocked && !lesson.preview && 'opacity-50 cursor-not-allowed'
                         )}
                       >
-                        {isActive ? (
+                         {isActive ? (
                            <Play className="h-5 w-5 text-primary shrink-0" />
                         ) : (
                            <Icon
                             className={cn(
                               'h-5 w-5 shrink-0',
-                              isCompleted ? 'text-green-500' : 'text-muted-foreground'
+                              isCompleted ? 'text-green-500' : 'text-muted-foreground',
+                              isLocked && 'text-amber-500'
                             )}
                           />
                         )}
