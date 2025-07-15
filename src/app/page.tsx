@@ -21,7 +21,7 @@ export default function Home() {
     <div className="container mx-auto px-4 py-8">
       <div className="relative mb-12 h-60 md:h-80 w-full overflow-hidden rounded-3xl shadow-2xl group">
         <Image
-          src="https://placehold.co/1200x320.png"
+          src="https://i.imgur.com/LXmHUxY.png"
           alt="Banner"
           data-ai-hint="youtubers futuristic"
           fill
