@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { CourseCard } from '@/components/course-card';
 import { courses } from '@/lib/data';
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, MoveRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 export default function Home() {
@@ -18,38 +18,41 @@ export default function Home() {
     return acc;
   }, {} as Record<string, typeof courses>);
 
+  const featuredCourse = courses.find(c => c.id === 'nextjs-fundamentals');
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="relative mb-12 h-64 md:h-80 w-full overflow-hidden rounded-2xl shadow-lg">
-        <Image
-          src="https://placehold.co/1200x400.png"
-          alt="Featured Course Banner"
-          data-ai-hint="online course abstract"
-          layout="fill"
-          objectFit="cover"
-          className="transition-transform duration-500 hover:scale-105"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-6 md:p-10 text-white">
-          <h1 className="font-headline text-3xl md:text-5xl font-bold mb-2 drop-shadow-md">
-            Unlock Your Potential
-          </h1>
-          <p className="text-base md:text-xl max-w-2xl font-body drop-shadow-sm">
-            Discover a wide range of courses designed to boost your skills and career.
-          </p>
-          <Button asChild className="mt-4 group bg-accent hover:bg-accent/90 text-accent-foreground">
-            <Link href="#courses">
-              Browse Courses
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
+      {featuredCourse && (
+        <div className="relative mb-12 h-80 md:h-96 w-full overflow-hidden rounded-3xl shadow-2xl group">
+          <Image
+            src={featuredCourse.bannerUrl.replace('225x400', '1200x400')}
+            alt="Featured Course Banner"
+            data-ai-hint="online course abstract"
+            fill
+            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute bottom-0 left-0 p-6 md:p-12 text-white">
+            <h1 className="font-headline text-4xl md:text-6xl font-bold mb-3 drop-shadow-lg">
+              {featuredCourse.title}
+            </h1>
+            <p className="text-base md:text-lg max-w-2xl font-body drop-shadow-md mb-6">
+              {featuredCourse.description}
+            </p>
+            <Button asChild className="group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300">
+              <Link href={`/courses/${featuredCourse.id}`}>
+                Start Learning
+                <MoveRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
 
-      <section id="courses" className="space-y-12">
+      <section id="courses" className="space-y-16">
         {Object.entries(coursesByCategory).map(([category, categoryCourses]) => (
           <div key={category}>
-            <h2 className="font-headline text-2xl font-bold mb-6">{category}</h2>
+            <h2 className="font-headline text-3xl font-bold mb-6">{category}</h2>
             <Carousel
               opts={{
                 align: 'start',
@@ -64,8 +67,8 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="hidden md:flex" />
-              <CarouselNext className="hidden md:flex" />
+              <CarouselPrevious className="hidden md:flex bg-background/50 backdrop-blur-sm" />
+              <CarouselNext className="hidden md:flex bg-background/50 backdrop-blur-sm" />
             </Carousel>
           </div>
         ))}
