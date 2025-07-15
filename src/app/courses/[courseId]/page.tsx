@@ -10,8 +10,7 @@ import { CourseSidebar } from '@/components/course-sidebar';
 import { LessonContent } from '@/components/lesson-content';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function CoursePage({ params }: { params: { courseId: string } }) {
-  const courseId = params.courseId;
+export default function CoursePage({ params: { courseId } }: { params: { courseId: string } }) {
   const [course, setCourse] = useState<(typeof courses)[0] | undefined>(undefined);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
