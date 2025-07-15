@@ -9,7 +9,7 @@ import { useProgress } from '@/hooks/use-progress';
 import { CourseSidebar } from '@/components/course-sidebar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Lock, PlayCircle, Star } from 'lucide-react';
+import { ArrowLeft, Lock, PlayCircle, Star } from 'lucide-react';
 import { CourseProgress } from '@/components/course-progress';
 import { useAuth } from '@/components/providers';
 import Link from 'next/link';
@@ -125,21 +125,31 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
                            </Link>
                        </Button>
                     ) : (
-                        <Button 
-                            size="lg" 
-                            className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg"
-                            onClick={handlePrimaryAction}
-                        >
-                            {course.purchased ? (
-                                <>
-                                    Start Course <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-                                </>
-                            ) : (
-                                <>
-                                    Buy Now <Lock className="ml-2 h-5 w-5" />
-                                </>
+                        <div className="flex flex-col gap-3">
+                            <Button 
+                                size="lg" 
+                                className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg"
+                                onClick={handlePrimaryAction}
+                            >
+                                {course.purchased ? (
+                                    <>
+                                        Start Course <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                    </>
+                                ) : (
+                                    <>
+                                        Buy Now <Lock className="ml-2 h-5 w-5" />
+                                    </>
+                                )}
+                            </Button>
+                            {!course.purchased && (
+                                <Button asChild variant="outline" size="lg" className="w-full">
+                                    <Link href="/">
+                                        <ArrowLeft className="mr-2 h-5 w-5" />
+                                        Back to Home
+                                    </Link>
+                                </Button>
                             )}
-                        </Button>
+                        </div>
                     )}
 
                     {isAuthenticated && course.purchased && <CourseProgress course={course} />}
