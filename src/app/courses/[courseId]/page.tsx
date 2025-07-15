@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { notFound } from 'next/navigation';
 import { courses } from '@/lib/data';
 import { type Lesson } from '@/lib/types';
@@ -10,7 +10,8 @@ import { CourseSidebar } from '@/components/course-sidebar';
 import { LessonContent } from '@/components/lesson-content';
 import { Skeleton } from '@/components/ui/skeleton';
 
-export default function CoursePage({ params: { courseId } }: { params: { courseId: string } }) {
+export default function CoursePage({ params }: { params: Promise<{ courseId: string }> }) {
+  const { courseId } = use(params);
   const [course, setCourse] = useState<(typeof courses)[0] | undefined>(undefined);
   const [activeLesson, setActiveLesson] = useState<Lesson | null>(null);
   const [isLoading, setIsLoading] = useState(true);
