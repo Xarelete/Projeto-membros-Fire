@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { CourseCard } from '@/components/course-card';
 import { courses } from '@/lib/data';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { ContinueWatchingCard } from '@/components/continue-watching-card';
 
 export default function Home() {
   const coursesByCategory = courses.reduce((acc, course) => {
@@ -28,11 +27,6 @@ export default function Home() {
           className="object-cover"
         />
       </div>
-
-      <section id="continue-watching" className="mb-12">
-        <h2 className="font-headline text-3xl font-bold mb-6">Continuar assistindo</h2>
-        <ContinueWatchingCard />
-      </section>
 
       <section id="courses" className="space-y-16">
         {Object.entries(coursesByCategory).map(([category, categoryCourses]) => (
