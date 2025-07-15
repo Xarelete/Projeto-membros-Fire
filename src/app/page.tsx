@@ -4,9 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CourseCard } from '@/components/course-card';
 import { courses } from '@/lib/data';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, MoveRight } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { ContinueWatchingCard } from '@/components/continue-watching-card';
 
 export default function Home() {
   const coursesByCategory = courses.reduce((acc, course) => {
@@ -18,41 +17,27 @@ export default function Home() {
     return acc;
   }, {} as Record<string, typeof courses>);
 
-  const featuredCourse = courses.find(c => c.id === 'nextjs-fundamentals');
-
   return (
     <div className="container mx-auto px-4 py-8">
-      {featuredCourse && (
-        <div className="relative mb-12 h-80 md:h-96 w-full overflow-hidden rounded-3xl shadow-2xl group">
-          <Image
-            src={featuredCourse.bannerUrl.replace('225x400', '1200x400')}
-            alt="Featured Course Banner"
-            data-ai-hint="online course abstract"
-            fill
-            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-          <div className="absolute bottom-0 left-0 p-6 md:p-12 text-white">
-            <h1 className="font-headline text-4xl md:text-6xl font-bold mb-3 drop-shadow-lg">
-              {featuredCourse.title}
-            </h1>
-            <p className="text-base md:text-lg max-w-2xl font-body drop-shadow-md mb-6">
-              {featuredCourse.description}
-            </p>
-            <Button asChild className="group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300">
-              <Link href={`/courses/${featuredCourse.id}`}>
-                Start Learning
-                <MoveRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </div>
-        </div>
-      )}
+      <div className="relative mb-12 h-60 md:h-80 w-full overflow-hidden rounded-3xl shadow-2xl group">
+        <Image
+          src="https://placehold.co/1200x320.png"
+          alt="Banner"
+          data-ai-hint="youtubers futuristic"
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      <section id="continue-watching" className="mb-12">
+        <h2 className="font-headline text-3xl font-bold mb-6">Continuar assistindo</h2>
+        <ContinueWatchingCard />
+      </section>
 
       <section id="courses" className="space-y-16">
         {Object.entries(coursesByCategory).map(([category, categoryCourses]) => (
           <div key={category}>
-            <h2 className="font-headline text-3xl font-bold mb-6">{category}</h2>
+            <h2 className="font-headline text-3xl font-bold mb-6">{category} 👇</h2>
             <Carousel
               opts={{
                 align: 'start',

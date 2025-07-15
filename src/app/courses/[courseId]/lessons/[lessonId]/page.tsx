@@ -33,8 +33,9 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
       if (lessonAndModule) {
         setActiveLesson(lessonAndModule.lesson);
         setActiveModule(lessonAndModule.module);
+        // Save the last watched lesson
+        localStorage.setItem('lastWatchedLesson', JSON.stringify({ courseId, lessonId }));
       } else {
-        // If lesson not found, maybe redirect to course preview or show 404
         notFound();
       }
     } else {
@@ -142,8 +143,8 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
         <div className="flex items-center justify-between">
             <TabsList>
-              <TabsTrigger value="lessons">Aulas</TabsTrigger>
               <TabsTrigger value="content">Conteúdo</TabsTrigger>
+              <TabsTrigger value="lessons">Aulas</TabsTrigger>
             </TabsList>
             <div className='flex items-center gap-4'>
                 <Button variant="ghost" size="icon">
