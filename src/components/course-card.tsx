@@ -19,7 +19,7 @@ export function CourseCard({ course }: CourseCardProps) {
       aria-disabled={isLocked} 
       tabIndex={isLocked ? -1 : 0}
       className={cn(
-        "group block relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-lg transition-transform duration-300 ease-in-out hover:-translate-y-2 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-amber-500",
+        "group block relative w-full aspect-[9/16] rounded-2xl overflow-hidden shadow-lg transition-all duration-500 ease-in-out hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/20 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-amber-500",
         isLocked && 'pointer-events-none'
       )}
     >
