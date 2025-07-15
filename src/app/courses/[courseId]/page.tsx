@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, useMemo } from 'react';
 import { notFound } from 'next/navigation';
 import { courses } from '@/lib/data';
 import { type Lesson } from '@/lib/types';
@@ -28,6 +28,24 @@ export default function CoursePage({ params }: { params: Promise<{ courseId: str
   }, [courseId]);
   
   const { completedLessons, toggleLessonCompleted } = useProgress(courseId, course);
+
+  const allLessons = useMemo(() => {
+    return course?.modules.flatMap(module => module.lessons) || [];
+  }, [course]);
+
+  const activeLessonIndex = useMemo(() => {
+    if (!activeLesson) return -1;
+    return allLessons.findIndex(l => l.id === activeLesson.id);
+  }, [activeLesson, allLessons]);
+
+  const previousLesson = activeLessonIndex > 0 ? allLessons[activeLessonIndex - 1] : null;
+  const nextLesson = activeLessonIndex < allLessons.length - 1 ? allLessons[activeLessonIndex + 1] : null;
+
+  const goToLesson = (lesson: Lesson | null) => {
+    if (lesson) {
+        setActiveLesson(lesson);
+    }
+  };
 
   if (isLoading) {
     return (
@@ -85,6 +103,9 @@ export default function CoursePage({ params }: { params: Promise<{ courseId: str
         lesson={activeLesson}
         isCompleted={completedLessons.has(activeLesson.id)}
         onToggleCompleted={toggleLessonCompleted}
+        previousLesson={previousLesson}
+        nextLesson={nextLesson}
+        onGoToLesson={goToLesson}
       />
     </CourseLayout>
   );
