@@ -18,6 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { GraduationCap } from 'lucide-react';
 import { useAuth } from '@/components/providers';
 import { useRouter } from 'next/navigation';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Por favor, insira um email válido.' }),
@@ -27,6 +28,7 @@ const formSchema = z.object({
 export default function LoginPage() {
   const { login } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,9 +39,16 @@ export default function LoginPage() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log('Login data:', values);
-    login();
-    router.push('/');
+    if (values.email === 'admin@admin.com' && values.password === 'admin123') {
+      login();
+      router.push('/');
+    } else {
+      toast({
+        variant: 'destructive',
+        title: 'Erro de Login',
+        description: 'Email ou senha inválidos. Por favor, tente novamente.',
+      });
+    }
   }
 
   return (
