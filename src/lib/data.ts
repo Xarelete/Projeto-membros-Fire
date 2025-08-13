@@ -16,9 +16,9 @@ export const courses: Course[] = [
         lessons: [
           {
             id: 'lesson-1-1',
-            title: 'What is Next.js?',
+            title: 'Aula 1 do Módulo 1',
             duration: '10:45',
-            videoId: 'dQw4w9WgXcQ',
+            videoId: '6ZmYa_KnPzg',
             description: `
               <p>In this introductory lesson, we'll explore the core concepts of Next.js and understand why it's a popular choice for building modern web applications. We'll cover:</p>
               <ul>
@@ -53,9 +53,9 @@ export const courses: Course[] = [
         lessons: [
           {
             id: 'lesson-2-1',
-            title: 'File-based Routing',
+            title: 'Aula 1 do Módulo 2',
             duration: '12:30',
-            videoId: 'dQw4w9WgXcQ',
+            videoId: 'wtAsS5r2A9E',
             description: '<p>Dive deep into the intuitive routing system of Next.js. Create new pages and routes simply by adding files to the `pages` directory. We will also explore dynamic routing to create pages from data.</p>',
             resources: [
                 { label: 'Routing Docs', url: '#', icon: Book },
@@ -63,9 +63,9 @@ export const courses: Course[] = [
           },
           {
             id: 'lesson-2-2',
-            title: 'Linking and Navigation',
+            title: 'Aula 2 do Módulo 2',
             duration: '8:55',
-            videoId: 'dQw4w9WgXcQ',
+            videoId: 'GK3v3JumvpA',
             description: '<p>Learn how to navigate between pages using the Next.js Link component for client-side navigation, ensuring a fast, single-page app-like experience.</p>',
             resources: [],
           },
