@@ -16,7 +16,7 @@ export const courses: Course[] = [
         lessons: [
           {
             id: 'lesson-1-1',
-            title: 'Aula 1 do Módulo 1',
+            title: 'Lección 1: Cómo crear tu primer vídeo con el generador de indicaciones',
             duration: '10:45',
             videoId: '6ZmYa_KnPzg',
             description: `
@@ -32,19 +32,6 @@ export const courses: Course[] = [
               { label: 'Community Chat', url: '#', icon: Group },
             ],
           },
-          {
-            id: 'lesson-1-2',
-            title: 'Setting up your first project',
-            duration: '15:20',
-            videoId: 'dQw4w9WgXcQ',
-            description: `
-              <p>Let's get our hands dirty! This lesson walks you through the process of creating a new Next.js project from scratch.</p>
-              <p>You'll learn how to use <code>create-next-app</code> and understand the basic project structure that gets generated.</p>
-            `,
-            resources: [
-              { label: 'Starter Code', url: '#', icon: Download },
-            ],
-          },
         ],
       },
       {
@@ -53,7 +40,7 @@ export const courses: Course[] = [
         lessons: [
           {
             id: 'lesson-2-1',
-            title: 'Aula 1 do Módulo 2',
+            title: 'Lección 2: Uso del generador de scripts virales',
             duration: '12:30',
             videoId: 'wtAsS5r2A9E',
             description: '<p>Dive deep into the intuitive routing system of Next.js. Create new pages and routes simply by adding files to the `pages` directory. We will also explore dynamic routing to create pages from data.</p>',
@@ -63,7 +50,7 @@ export const courses: Course[] = [
           },
           {
             id: 'lesson-2-2',
-            title: 'Aula 2 do Módulo 2',
+            title: 'Lección 3 - Ejemplos de vídeos virales',
             duration: '8:55',
             videoId: 'GK3v3JumvpA',
             description: '<p>Learn how to navigate between pages using the Next.js Link component for client-side navigation, ensuring a fast, single-page app-like experience.</p>',
