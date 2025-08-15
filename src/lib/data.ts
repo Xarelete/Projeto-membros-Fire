@@ -7,7 +7,7 @@ export const courses: Course[] = [
     title: 'Next.js Fundamentals',
     description: 'Master the basics of Next.js and build powerful, server-rendered React applications.',
     bannerUrl: 'https://i.imgur.com/xhVrV2g.png',
-    category: 'My Courses',
+    category: 'MEUS CURSOS',
     purchased: true,
     modules: [
       {
@@ -65,7 +65,7 @@ export const courses: Course[] = [
     title: 'Tailwind CSS for Designers',
     description: 'Learn how to design and build beautiful, modern websites without ever leaving your HTML.',
     bannerUrl: 'https://placehold.co/225x400.png',
-    category: 'My Courses',
+    category: 'MEUS CURSOS',
     purchased: true,
     modules: [
         {
