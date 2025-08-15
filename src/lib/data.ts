@@ -175,20 +175,20 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'tailwind-for-designers',
-    title: 'Tailwind CSS for Designers',
+    id: 'plano-rapido',
+    title: 'Plano Rápido',
     description: '',
-    bannerUrl: 'https://placehold.co/225x400.png',
+    bannerUrl: 'https://i.imgur.com/Fp4tHPW.png',
     category: 'MEUS CURSOS',
     purchased: true,
     modules: [
         {
           id: 'module-1',
-          title: 'Getting Started with Tailwind',
+          title: 'Módulo 1',
           lessons: [
             {
               id: 'lesson-1-1',
-              title: 'Utility-First Fundamentals',
+              title: 'Aula 1',
               duration: '18:30',
               videoId: 'dQw4w9WgXcQ',
               description: '<p>Understand the core philosophy of Tailwind CSS and how the utility-first approach can dramatically speed up your development workflow.</p>',
