@@ -6,7 +6,7 @@ export const courses: Course[] = [
     id: 'nextjs-fundamentals',
     title: 'Next.js Fundamentals',
     description: 'Master the basics of Next.js and build powerful, server-rendered React applications.',
-    bannerUrl: 'https://i.imgur.com/LXmHUxY.png',
+    bannerUrl: 'https://i.imgur.com/xhVrV2g.png',
     category: 'My Courses',
     purchased: true,
     modules: [
