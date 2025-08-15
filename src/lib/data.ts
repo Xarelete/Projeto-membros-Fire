@@ -3,61 +3,175 @@ import { Book, Download, Group, Video } from 'lucide-react';
 
 export const courses: Course[] = [
   {
-    id: 'nextjs-fundamentals',
+    id: 'veolab-academy',
     title: 'Veolab Academy',
-    description: 'Master the basics of Next.js and build powerful, server-rendered React applications.',
+    description: '',
     bannerUrl: 'https://i.imgur.com/xhVrV2g.png',
     category: 'MEUS CURSOS',
     purchased: true,
     modules: [
       {
         id: 'module-1',
-        title: 'Introduction to Next.js',
+        title: 'Módulo 1',
         lessons: [
           {
             id: 'lesson-1-1',
             title: 'Lección 1: Cómo crear tu primer vídeo con el generador de indicaciones',
             duration: '10:45',
             videoId: '6ZmYa_KnPzg',
-            description: `
-              <p>In this introductory lesson, we'll explore the core concepts of Next.js and understand why it's a popular choice for building modern web applications. We'll cover:</p>
-              <ul>
-                <li>Server-Side Rendering (SSR) vs. Static Site Generation (SSG)</li>
-                <li>The benefits of file-system based routing.</li>
-                <li>Key features that set Next.js apart.</li>
-              </ul>
-            `,
-            resources: [
-              { label: 'Official Docs', url: '#', icon: Book },
-              { label: 'Community Chat', url: '#', icon: Group },
-            ],
+            description: ``,
+            resources: [],
+          },
+           {
+            id: 'lesson-1-2',
+            title: 'Aula 2',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+           {
+            id: 'lesson-1-3',
+            title: 'Aula 3',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
           },
         ],
       },
       {
         id: 'module-2',
-        title: 'Routing and Pages',
+        title: 'Módulo 2',
         lessons: [
           {
             id: 'lesson-2-1',
             title: 'Lección 2: Uso del generador de scripts virales',
             duration: '12:30',
             videoId: 'wtAsS5r2A9E',
-            description: '<p>Dive deep into the intuitive routing system of Next.js. Create new pages and routes simply by adding files to the `pages` directory. We will also explore dynamic routing to create pages from data.</p>',
-            resources: [
-                { label: 'Routing Docs', url: '#', icon: Book },
-            ],
+            description: '',
+            resources: [],
           },
           {
             id: 'lesson-2-2',
             title: 'Lección 3 - Ejemplos de vídeos virales',
             duration: '8:55',
             videoId: 'GK3v3JumvpA',
-            description: '<p>Learn how to navigate between pages using the Next.js Link component for client-side navigation, ensuring a fast, single-page app-like experience.</p>',
+            description: '',
+            resources: [],
+          },
+          {
+            id: 'lesson-2-3',
+            title: 'Aula 3',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
             resources: [],
           },
         ],
       },
+      {
+        id: 'module-3',
+        title: 'Módulo 3',
+        lessons: [
+            {
+            id: 'lesson-3-1',
+            title: 'Aula 1',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+        ]
+      },
+      {
+        id: 'module-4',
+        title: 'Módulo 4',
+        lessons: [
+            {
+            id: 'lesson-4-1',
+            title: 'Aula 1',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+        ]
+      },
+       {
+        id: 'module-5',
+        title: 'Módulo 5',
+        lessons: [
+            {
+            id: 'lesson-5-1',
+            title: 'Aula 1',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+           {
+            id: 'lesson-5-2',
+            title: 'Aula 2',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+        ]
+      },
+       {
+        id: 'module-6',
+        title: 'Módulo 6',
+        lessons: [
+            {
+            id: 'lesson-6-1',
+            title: 'Aula 1',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+           {
+            id: 'lesson-6-2',
+            title: 'Aula 2',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+        ]
+      },
+      {
+        id: 'module-7',
+        title: 'Módulo 7',
+        lessons: [
+            {
+            id: 'lesson-7-1',
+            title: 'Aula 1',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+           {
+            id: 'lesson-7-2',
+            title: 'Aula 2',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+          {
+            id: 'lesson-7-3',
+            title: 'Aula 3',
+            duration: '00:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: ``,
+            resources: [],
+          },
+        ]
+      }
     ],
   },
   {

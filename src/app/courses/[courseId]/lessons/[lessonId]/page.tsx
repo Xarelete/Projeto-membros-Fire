@@ -107,8 +107,8 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
     return (
       <div className="container mx-auto p-4 md:p-8">
         <div className="text-center">
-            <h2 className="text-2xl font-headline font-bold">Welcome to {course.title}</h2>
-            <p className="text-muted-foreground mt-2">This course doesn't have any lessons yet.</p>
+            <h2 className="text-2xl font-headline font-bold">Bem-vindo ao {course.title}</h2>
+            <p className="text-muted-foreground mt-2">Este curso ainda não possui aulas.</p>
         </div>
       </div>
     );
@@ -154,7 +154,7 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
             <div className='flex items-center gap-4'>
                 <Button variant="ghost" size="icon">
                     <Star className="h-5 w-5" />
-                    <span className="sr-only">Favorite</span>
+                    <span className="sr-only">Favoritar</span>
                 </Button>
                 <div className="flex items-center space-x-2">
                     <Checkbox
@@ -163,7 +163,7 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
                       onCheckedChange={() => toggleLessonCompleted(activeLesson.id)}
                     />
                     <Label htmlFor={`completed-${activeLesson.id}`} className="text-sm font-medium leading-none cursor-pointer">
-                      Mark as Completed
+                      Marcar como concluída
                     </Label>
                 </div>
             </div>

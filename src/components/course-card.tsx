@@ -38,7 +38,7 @@ export function CourseCard({ course }: CourseCardProps) {
         {!purchased && (
           <Badge variant="destructive" className="bg-red-500/80 backdrop-blur-sm border-none text-white shadow-lg">
             <Lock className="h-3 w-3 mr-1" />
-            Locked
+            Bloqueado
           </Badge>
         )}
       </div>
