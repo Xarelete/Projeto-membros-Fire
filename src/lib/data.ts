@@ -201,6 +201,15 @@ export const courses: Course[] = [
         }
     ]
   },
+   {
+    id: 'trend-dos-bebes',
+    title: 'Trend dos bebês',
+    description: '',
+    bannerUrl: 'https://i.imgur.com/cFmyne3.png',
+    category: 'MEUS CURSOS',
+    purchased: true,
+    modules: [],
+  },
   {
     id: 'firebase-masterclass',
     title: 'Firebase Masterclass',
