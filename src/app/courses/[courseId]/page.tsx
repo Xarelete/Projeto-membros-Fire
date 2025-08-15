@@ -82,7 +82,7 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
     <div className="container mx-auto py-8">
         <div className="relative mb-8 h-80 md:h-[450px] w-full overflow-hidden rounded-3xl shadow-2xl flex items-end">
           <Image
-            src={course.bannerUrl.replace('225x400', '1200x400')}
+            src={course.purchased ? course.bannerUrl.replace('225x400', '1200x400') : "https://placehold.co/1200x400.png"}
             alt={`${course.title} Banner`}
             data-ai-hint="online course abstract"
             fill
