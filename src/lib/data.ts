@@ -63,7 +63,7 @@ export const courses: Course[] = [
   {
     id: 'tailwind-for-designers',
     title: 'Tailwind CSS for Designers',
-    description: 'Learn how to design and build beautiful, modern websites without ever leaving your HTML.',
+    description: '',
     bannerUrl: 'https://placehold.co/225x400.png',
     category: 'MEUS CURSOS',
     purchased: true,
@@ -90,7 +90,7 @@ export const courses: Course[] = [
   {
     id: 'firebase-masterclass',
     title: 'Firebase Masterclass',
-    description: 'Build full-stack applications using the power of Firebase for auth, database, and hosting.',
+    description: '',
     bannerUrl: 'https://placehold.co/225x400.png',
     category: 'Accelerate Virality',
     purchased: false,
@@ -100,7 +100,7 @@ export const courses: Course[] = [
     {
     id: 'viral-content-strategy',
     title: 'Viral Content Strategy',
-    description: 'Discover the secrets to creating content that people love to share.',
+    description: '',
     bannerUrl: 'https://placehold.co/225x400.png',
     category: 'Accelerate Virality',
     purchased: true,
@@ -109,7 +109,7 @@ export const courses: Course[] = [
   {
     id: 'social-media-growth',
     title: 'Social Media Growth Hacking',
-    description: 'Advanced techniques to grow your social media presence exponentially.',
+    description: '',
     bannerUrl: 'https://placehold.co/225x400.png',
     category: 'Accelerate Virality',
     purchased: false,
@@ -119,7 +119,7 @@ export const courses: Course[] = [
   {
     id: 'advanced-react-patterns',
     title: 'Advanced React Patterns',
-    description: 'Take your React skills to the next level with advanced patterns and techniques.',
+    description: '',
     bannerUrl: 'https://placehold.co/225x400.png',
     category: 'Próximo Nível',
     purchased: false,
@@ -129,7 +129,7 @@ export const courses: Course[] = [
   {
     id: 'devops-for-developers',
     title: 'DevOps for Developers',
-    description: 'Learn the fundamentals of DevOps to streamline your development and deployment workflows.',
+    description: '',
     bannerUrl: 'https://placehold.co/225x400.png',
     category: 'Próximo Nível',
     purchased: false,

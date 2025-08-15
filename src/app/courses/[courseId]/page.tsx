@@ -93,9 +93,6 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
             <h1 className="font-headline text-4xl md:text-6xl font-bold mb-3 drop-shadow-lg">
               {course.title}
             </h1>
-            <p className="text-base md:text-lg max-w-3xl font-body drop-shadow-md mb-6">
-              {course.description}
-            </p>
             <div className='flex items-center gap-4'>
                 <p className="font-semibold">{course.modules.length} Modules</p>
                 <span className="text-white/50">&bull;</span>
