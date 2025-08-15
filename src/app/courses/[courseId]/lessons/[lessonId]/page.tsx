@@ -2,6 +2,7 @@
 
 import { useState, useEffect, use, useMemo } from 'react';
 import { notFound, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { courses } from '@/lib/data';
 import { type Lesson, type Module } from '@/lib/types';
 import { useProgress } from '@/hooks/use-progress';
@@ -118,6 +119,13 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
 
   return (
     <div className="container mx-auto p-4 md:p-8">
+      <Button asChild variant="outline" className="mb-6">
+          <Link href={`/courses/${courseId}`}>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Voltar para os módulos
+          </Link>
+      </Button>
+
       <div className="relative mb-6">
         <VideoPlayer videoId={activeLesson.videoId} title={activeLesson.title} />
         <Button 
