@@ -4,7 +4,7 @@ import { Book, Download, Group, Video } from 'lucide-react';
 export const courses: Course[] = [
   {
     id: 'nextjs-fundamentals',
-    title: 'Next.js Fundamentals',
+    title: 'Veolab Academy',
     description: 'Master the basics of Next.js and build powerful, server-rendered React applications.',
     bannerUrl: 'https://i.imgur.com/xhVrV2g.png',
     category: 'MEUS CURSOS',
