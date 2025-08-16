@@ -23,7 +23,7 @@ export function LessonContent({
           {lesson.resources.length > 0 && (
             <div className="mt-6 pt-6 border-t">
               <h3 className="font-headline text-lg font-semibold mb-3">
-                Recursos da Aula
+                Recursos de la lección
               </h3>
               <div className="flex flex-wrap gap-3">
                 {lesson.resources.map((resource, index) => (

@@ -21,8 +21,8 @@ import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z.object({
-  email: z.string().email({ message: 'Por favor, insira um email válido.' }),
-  password: z.string().min(1, { message: 'A senha é obrigatória.' }),
+  email: z.string().email({ message: 'Por favor, introduce un email válido.' }),
+  password: z.string().min(1, { message: 'La contraseña es obligatoria.' }),
 });
 
 export default function LoginPage() {
@@ -45,8 +45,8 @@ export default function LoginPage() {
     } else {
       toast({
         variant: 'destructive',
-        title: 'Erro de Login',
-        description: 'Email ou senha inválidos. Por favor, tente novamente.',
+        title: 'Error de inicio de sesión',
+        description: 'Email o contraseña no válidos. Por favor, inténtalo de nuevo.',
       });
     }
   }
@@ -59,7 +59,7 @@ export default function LoginPage() {
             <GraduationCap className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold font-headline">Veolab Academy</span>
           </div>
-          <CardTitle className="text-2xl font-headline">Acesse sua conta</CardTitle>
+          <CardTitle className="text-2xl font-headline">Accede a tu cuenta</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -71,7 +71,7 @@ export default function LoginPage() {
                   <FormItem>
                     <FormLabel>Email</FormLabel>
                     <FormControl>
-                      <Input placeholder="seu@email.com" {...field} />
+                      <Input placeholder="tu@email.com" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -82,7 +82,7 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Senha</FormLabel>
+                    <FormLabel>Contraseña</FormLabel>
                     <FormControl>
                       <Input type="password" placeholder="********" {...field} />
                     </FormControl>
