@@ -174,7 +174,7 @@ export const courses: Course[] = [
   },
   {
     id: 'plano-rapido',
-    title: 'Plano Rápido',
+    title: 'Plan Rápido: Cómo conseguir tu 1er cliente con videos de IA',
     description: '',
     bannerUrl: 'https://i.imgur.com/Fp4tHPW.png',
     category: 'MIS CURSOS',
@@ -182,18 +182,46 @@ export const courses: Course[] = [
     modules: [
         {
           id: 'module-1',
-          title: 'Módulo 1',
+          title: 'Módulo 1 - Determinando tu público objetivo',
+          isLocked: true,
           lessons: [
             {
               id: 'lesson-1-1',
-              title: 'Lección 1',
-              duration: '18:30',
+              title: '¿Cómo Elegir tu Nicho?',
+              duration: '00:00',
               videoId: 'dQw4w9WgXcQ',
               description: '',
-              resources: [
-                { label: 'Documentación de Tailwind', url: '#', icon: Book },
-                { label: 'Archivos del Proyecto', url: '#', icon: Download },
-              ],
+              resources: [],
+            },
+          ]
+        },
+        {
+          id: 'module-2',
+          title: 'Módulo 2 - Creando Tus Primeros Videos Comerciales',
+          isLocked: true,
+          lessons: [
+            {
+              id: 'lesson-2-1',
+              title: 'Cómo Crear Videos para Empresas o Negocios',
+              duration: '00:00',
+              videoId: 'dQw4w9WgXcQ',
+              description: '',
+              resources: [],
+            },
+          ]
+        },
+        {
+          id: 'module-3',
+          title: 'Módulo 3 - Prospección y Abordaje',
+          isLocked: true,
+          lessons: [
+            {
+              id: 'lesson-3-1',
+              title: 'Cómo Prospectar tus Primeros Clientes',
+              duration: '00:00',
+              videoId: 'dQw4w9WgXcQ',
+              description: '',
+              resources: [],
             },
           ]
         }
