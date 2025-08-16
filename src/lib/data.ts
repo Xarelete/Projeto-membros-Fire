@@ -234,7 +234,34 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/cFmyne3.png',
     category: 'MIS CURSOS',
     purchased: true,
-    modules: [],
+    modules: [
+        {
+          id: 'module-1',
+          title: 'Módulo 1 - Tendencia extremadamente viral',
+          isLocked: true,
+          lessons: [
+            {
+              id: 'lesson-1-1',
+              title: 'Lección 1 - Cómo Hacer los Videos de la Tendencia de los Bebés',
+              duration: 'Video',
+              videoId: 'dQw4w9WgXcQ',
+              description: '',
+              resources: [
+                  { label: 'Link de la IA', url: 'https://www.hedra.com/app/home', icon: Link2 },
+                  { label: 'Link del Prompt Aquí', url: 'https://drive.google.com/drive/folders/19iMK1ttLyCP54AzVyHQAlwfFe5U8Ii0V?usp=sharing', icon: Download }
+              ],
+            },
+            {
+              id: 'lesson-1-2',
+              title: 'Lección 2 - Cómo Hacer Videos de Más de 20 Segundos',
+              duration: 'Video',
+              videoId: 'dQw4w9WgXcQ',
+              description: '',
+              resources: [],
+            }
+          ]
+        }
+    ],
   },
   {
     id: 'pack-de-templates',
