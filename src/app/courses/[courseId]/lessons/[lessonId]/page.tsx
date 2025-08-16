@@ -12,10 +12,11 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { VideoPlayer } from '@/components/video-player';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight, Star } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Star, FileText } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/components/providers';
+import { Card, CardContent } from '@/components/ui/card';
 
 export default function LessonPage({ params }: { params: Promise<{ courseId: string, lessonId: string }> }) {
   const { courseId, lessonId } = use(params);
@@ -127,7 +128,15 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
       </Button>
 
       <div className="relative mb-6">
-        <VideoPlayer videoId={activeLesson.videoId} title={activeLesson.title} />
+        {activeLesson.videoId ? (
+            <VideoPlayer videoId={activeLesson.videoId} title={activeLesson.title} />
+        ) : (
+            <div className="aspect-video w-full rounded-xl overflow-hidden shadow-2xl bg-muted/30 flex flex-col items-center justify-center p-8 text-center">
+                <FileText className="h-16 w-16 text-muted-foreground mb-4" />
+                <h3 className="text-xl font-headline font-bold">Esta lección es contenido de texto.</h3>
+                <p className="text-muted-foreground mt-2">Mira la pestaña de "Contenido" abajo para acceder a los recursos.</p>
+            </div>
+        )}
         <Button 
             onClick={() => goToLesson(previousLesson)} 
             disabled={!previousLesson}

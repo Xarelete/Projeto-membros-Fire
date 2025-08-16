@@ -1,5 +1,5 @@
 import { type Course } from './types';
-import { Book, Download, Group, Video, MessageCircle } from 'lucide-react';
+import { Book, Download, Group, Video, MessageCircle, Link2 } from 'lucide-react';
 
 export const courses: Course[] = [
   {
@@ -174,7 +174,7 @@ export const courses: Course[] = [
   },
   {
     id: 'plano-rapido',
-    title: 'Plan Rápido: Cómo conseguir tu 1er cliente con videos de IA',
+    title: 'Plano Rápido: Cómo cerrar tu 1er cliente con videos de IA',
     description: '',
     bannerUrl: 'https://i.imgur.com/Fp4tHPW.png',
     category: 'MIS CURSOS',
@@ -243,8 +243,49 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/oskQRSx.png',
     category: 'ACELERAR VIRALIZACIÓN',
     purchased: true,
-    checkoutUrl: '#',
-    modules: [],
+    modules: [
+      {
+        id: 'module-1',
+        title: 'Módulo 1 - Facilitando tu vida con el pack',
+        lessons: [
+          {
+            id: 'lesson-1-1',
+            title: 'Plantilla viral aquí',
+            duration: 'Contenido',
+            videoId: '',
+            description: '<p>Accede a la plantilla de Canva para crear tus videos virales.</p>',
+            resources: [
+              { label: 'Pack de plantillas aquí', url: 'https://www.canva.com/design/DAGo26xMUJo/SnLMMQT8IiseavQVWvdRXA/edit?utm_content=DAGo26xMUJo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton', icon: Link2 },
+            ],
+          },
+          {
+            id: 'lesson-1-2',
+            title: 'Pack de sonidos',
+            duration: 'Contenido',
+            videoId: '',
+            description: '<p>Descarga los efectos de sonido para usar en tus videos.</p>',
+            resources: [
+               { label: 'Efectos sonoros aquí', url: 'https://drive.google.com/drive/folders/1WI9FdVB-xDUVAoF_byBBsMLYPcMNj97p?usp=sharing', icon: Download },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'module-2',
+        title: 'Módulo 2 - Cómo usar la plantilla y los efectos de sonido',
+        isLocked: true,
+        lessons: [
+          {
+            id: 'lesson-2-1',
+            title: 'Aula completa de edición en la práctica',
+            duration: '15:00',
+            videoId: 'dQw4w9WgXcQ',
+            description: '',
+            resources: [],
+          },
+        ],
+      },
+    ],
   },
     {
     id: 'perfis-para-modelar',
