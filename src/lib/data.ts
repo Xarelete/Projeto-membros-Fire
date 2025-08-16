@@ -19,7 +19,7 @@ export const courses: Course[] = [
             title: 'Lección 1 - Creando Cuenta',
             duration: '10:45',
             videoId: '6ZmYa_KnPzg',
-            description: ``,
+            description: `<p>Enlace para crear una cuenta gratuita: <a href="https://labs.google/flow/about#pricing" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://labs.google/flow/about#pricing</a></p>`,
             resources: [],
           },
         ],
@@ -34,7 +34,10 @@ export const courses: Course[] = [
             duration: '12:30',
             videoId: 'wtAsS5r2A9E',
             description: ``,
-            resources: [],
+            resources: [
+              { label: 'Generador de Prompts aquí', url: 'https://chatgpt.com/g/g-683c8d0cbbc08191b7119e86d4b20914-gerador-de-prompts', icon: Link2 },
+              { label: 'Crea tus vídeos aquí en este enlace', url: 'https://labs.google/flow/about', icon: Link2 },
+            ],
           },
           {
             id: 'lesson-2-2',
@@ -336,16 +339,16 @@ export const courses: Course[] = [
                         <p>Simplemente describan la escena y el diálogo de los videos que más les gusten en el generador de prompts y podrán crear videos ¡idénticos a esos!</p>
                         <p>Y si tienen alguna duda para hacer vídeos como este, pueden contactarme por el soporte de WhatsApp: (12) 99259-1593</p>
                         <ul class="list-disc pl-5 mt-4 space-y-2">
-                            <li><a href="https://www.instagram.com/ramos_channel/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/ramos_channel/</a></li>
-                            <li><a href="https://www.instagram.com/bibliaemselfie/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/bibliaemselfie/</a></li>
-                            <li><a href="https://www.instagram.com/layna.eng/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/layna.eng/</a></li>
-                            <li><a href="https://www.instagram.com/maquinadotemp0.ia/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/maquinadotemp0.ia/</a></li>
-                            <li><a href="https://www.tiktok.com/@podcastdabiblia2" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@podcastdabiblia2</a></li>
-                            <li><a href="https://www.tiktok.com/@vloghistorico" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@vloghistorico</a></li>
-                            <li><a href="https://www.tiktok.com/@gorilaosoltoporai" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@gorilaosoltoporai</a></li>
-                            <li><a href="https://www.tiktok.com/@vlogbiblico" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@vlogbiblico</a></li>
-                            <li><a href="https://www.tiktok.com/@criatividade.ia01" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@criatividade.ia01</a></li>
-                            <li><a href="https://www.tiktok.com/@bobbb_williiii788" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@bobbb_williiii788</a></li>
+                            <li><a href="https://www.instagram.com/ramos_channel/" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.instagram.com/ramos_channel/</a></li>
+                            <li><a href="https://www.instagram.com/bibliaemselfie/" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.instagram.com/bibliaemselfie/</a></li>
+                            <li><a href="https://www.instagram.com/layna.eng/" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.instagram.com/layna.eng/</a></li>
+                            <li><a href="https://www.instagram.com/maquinadotemp0.ia/" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.instagram.com/maquinadotemp0.ia/</a></li>
+                            <li><a href="https://www.tiktok.com/@podcastdabiblia2" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.tiktok.com/@podcastdabiblia2</a></li>
+                            <li><a href="https://www.tiktok.com/@vloghistorico" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.tiktok.com/@vloghistorico</a></li>
+                            <li><a href="https://www.tiktok.com/@gorilaosoltoporai" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.tiktok.com/@gorilaosoltoporai</a></li>
+                            <li><a href="https://www.tiktok.com/@vlogbiblico" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.tiktok.com/@vlogbiblico</a></li>
+                            <li><a href="https://www.tiktok.com/@criatividade.ia01" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.tiktok.com/@criatividade.ia01</a></li>
+                            <li><a href="https://www.tiktok.com/@bobbb_williiii788" target="_blank" rel="noopener noreferrer" class="text-amber-500 hover:underline">https://www.tiktok.com/@bobbb_williiii788</a></li>
                         </ul>
                     `,
                     resources: [],
