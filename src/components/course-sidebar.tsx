@@ -43,7 +43,7 @@ export function CourseSidebar({
                 {module.lessons.map((lesson) => {
                   const isCompleted = completedLessons.has(lesson.id);
                   const isActive = activeLessonId === lesson.id;
-                  const isLessonLocked = isLocked || module.isLocked;
+                  const isLessonLocked = isLocked || module.isLocked || lesson.isLocked;
                   
                   let Icon = Circle;
                   if (isLessonLocked) Icon = Lock;

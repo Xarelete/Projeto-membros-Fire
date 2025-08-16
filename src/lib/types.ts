@@ -8,6 +8,7 @@ export type Lesson = {
   description: string;
   resources: { label: string; url: string; icon: any }[];
   preview?: boolean; // Can this lesson be previewed when course is locked?
+  isLocked?: boolean;
 };
 
 export type Module = {

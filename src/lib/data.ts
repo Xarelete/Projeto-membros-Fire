@@ -9,6 +9,7 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/xhVrV2g.png',
     category: 'MIS CURSOS',
     purchased: true,
+    checkoutUrl: '#',
     modules: [
       {
         id: 'module-1',
@@ -52,6 +53,7 @@ export const courses: Course[] = [
             title: 'Lección 3 - Generador de Guiones Virales',
             duration: '00:00',
             videoId: 'dQw4w9WgXcQ',
+            isLocked: true,
             description: ``,
             resources: [],
           },
@@ -60,6 +62,7 @@ export const courses: Course[] = [
             title: 'Lección 4 - Cómo Hacer 53 Vídeos por Día',
             duration: '00:00',
             videoId: 'dQw4w9WgXcQ',
+            isLocked: true,
             description: ``,
             resources: [],
           },
@@ -185,6 +188,7 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/Fp4tHPW.png',
     category: 'MIS CURSOS',
     purchased: true,
+    checkoutUrl: '#',
     modules: [
         {
           id: 'module-1',
@@ -240,6 +244,7 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/cFmyne3.png',
     category: 'MIS CURSOS',
     purchased: true,
+    checkoutUrl: '#',
     modules: [
         {
           id: 'module-1',
@@ -276,6 +281,7 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/oskQRSx.png',
     category: 'ACELERAR VIRALIZACIÓN',
     purchased: true,
+    checkoutUrl: '#',
     modules: [
       {
         id: 'module-1',
@@ -327,6 +333,7 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/OYJyVIN.png',
     category: 'ACELERAR VIRALIZACIÓN',
     purchased: true,
+    checkoutUrl: '#',
     modules: [
         {
             id: 'module-1',
