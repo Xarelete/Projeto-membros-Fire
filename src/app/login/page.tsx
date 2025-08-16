@@ -39,7 +39,10 @@ export default function LoginPage() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    if (values.email === 'admin@admin.com' && values.password === 'admin123') {
+    if (
+      (values.email === 'admin@admin.com' && values.password === 'admin123') ||
+      (values.email === 'alumno793@veolab.com' && values.password === 'alumno123')
+    ) {
       login();
       router.push('/');
     } else {
