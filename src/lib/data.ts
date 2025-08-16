@@ -294,7 +294,38 @@ export const courses: Course[] = [
     bannerUrl: 'https://i.imgur.com/OYJyVIN.png',
     category: 'ACELERAR VIRALIZACIÓN',
     purchased: true,
-    modules: [],
+    modules: [
+        {
+            id: 'module-1',
+            title: 'Módulo 1 - Descarga el Archivo Aquí 👇🏻',
+            lessons: [
+                {
+                    id: 'lesson-1-1',
+                    title: 'Contenido',
+                    duration: 'Contenido',
+                    videoId: '',
+                    description: `
+                        <p>Hola a todos, aquí tienen 10 perfiles listos para que puedan modelar, es decir, pueden hacer videos iguales a los de estas personas, con nuestro generador de prompts.</p>
+                        <p>Simplemente describan la escena y el diálogo de los videos que más les gusten en el generador de prompts y podrán crear videos ¡idénticos a esos!</p>
+                        <p>Y si tienen alguna duda para hacer vídeos como este, pueden contactarme por el soporte de WhatsApp: (12) 99259-1593</p>
+                        <ul class="list-disc pl-5 mt-4 space-y-2">
+                            <li><a href="https://www.instagram.com/ramos_channel/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/ramos_channel/</a></li>
+                            <li><a href="https://www.instagram.com/bibliaemselfie/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/bibliaemselfie/</a></li>
+                            <li><a href="https://www.instagram.com/layna.eng/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/layna.eng/</a></li>
+                            <li><a href="https://www.instagram.com/maquinadotemp0.ia/" target="_blank" class="text-amber-500 hover:underline">https://www.instagram.com/maquinadotemp0.ia/</a></li>
+                            <li><a href="https://www.tiktok.com/@podcastdabiblia2" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@podcastdabiblia2</a></li>
+                            <li><a href="https://www.tiktok.com/@vloghistorico" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@vloghistorico</a></li>
+                            <li><a href="https://www.tiktok.com/@gorilaosoltoporai" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@gorilaosoltoporai</a></li>
+                            <li><a href="https://www.tiktok.com/@vlogbiblico" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@vlogbiblico</a></li>
+                            <li><a href="https://www.tiktok.com/@criatividade.ia01" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@criatividade.ia01</a></li>
+                            <li><a href="https://www.tiktok.com/@bobbb_williiii788" target="_blank" class="text-amber-500 hover:underline">https://www.tiktok.com/@bobbb_williiii788</a></li>
+                        </ul>
+                    `,
+                    resources: [],
+                }
+            ]
+        }
+    ],
   },
   {
     id: 'veolab-empresarial',
