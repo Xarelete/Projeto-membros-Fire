@@ -53,23 +53,25 @@ export function useAuth() {
 // --- Combined Providers ---
 export function Providers({ children }: { children: React.ReactNode }) {
   // Theme State
-  const [theme, setTheme] = React.useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as Theme) || "system";
-    }
-    return "system";
-  });
+  const [theme, setTheme] = React.useState<Theme>("system");
 
   // Auth State
-  const [isAuthenticated, setIsAuthenticated] = React.useState(() => {
-    if (typeof window !== "undefined") {
-        return localStorage.getItem("isAuthenticated") === "true";
-    }
-    return false;
-  });
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   React.useEffect(() => {
     // Theme effect
+    const storedTheme = localStorage.getItem("theme") as Theme | null;
+    if (storedTheme) {
+      setTheme(storedTheme);
+    }
+    
+    // Auth effect
+    const storedAuth = localStorage.getItem("isAuthenticated") === "true";
+    setIsAuthenticated(storedAuth);
+
+  }, []);
+
+  React.useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
 
@@ -82,8 +84,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
     }
 
     root.classList.add(effectiveTheme);
-    localStorage.setItem("theme", theme);
   }, [theme]);
+  
+  const handleSetTheme = (newTheme: Theme) => {
+    localStorage.setItem("theme", newTheme);
+    setTheme(newTheme);
+  };
+
 
   const authContextValue = React.useMemo(() => ({
     isAuthenticated,
@@ -99,8 +106,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   const themeContextValue = React.useMemo(() => ({
     theme,
-    setTheme,
-  }), [theme, setTheme]);
+    setTheme: handleSetTheme,
+  }), [theme]);
 
   return (
     <AuthContext.Provider value={authContextValue}>
