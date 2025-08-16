@@ -14,6 +14,7 @@ export type Module = {
   id: string;
   title: string;
   lessons: Lesson[];
+  isLocked?: boolean;
 };
 
 export type Course = {

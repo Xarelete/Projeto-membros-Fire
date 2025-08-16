@@ -115,6 +115,7 @@ export const courses: Course[] = [
       {
         id: 'module-6',
         title: 'Módulo 6 - Guía secreta de la monetización en 7 días (MUY RÁPIDO)',
+        isLocked: true,
         lessons: [
           {
             id: 'lesson-6-1',
@@ -145,6 +146,7 @@ export const courses: Course[] = [
       {
         id: 'module-7',
         title: 'Módulo 7 - Soporte y Comunidad',
+        isLocked: true,
         lessons: [
           {
             id: 'lesson-7-1',
