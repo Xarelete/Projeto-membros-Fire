@@ -108,8 +108,8 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
     return (
       <div className="container mx-auto p-4 md:p-8">
         <div className="text-center">
-            <h2 className="text-2xl font-headline font-bold">Bem-vindo a {course.title}</h2>
-            <p className="text-muted-foreground mt-2">Este curso ainda não tem aulas.</p>
+            <h2 className="text-2xl font-headline font-bold">Bienvenido a {course.title}</h2>
+            <p className="text-muted-foreground mt-2">Este curso aún no tiene lecciones.</p>
         </div>
       </div>
     );
@@ -122,7 +122,7 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
       <Button asChild variant="outline" className="mb-6">
           <Link href={`/courses/${courseId}`}>
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Voltar aos módulos
+              Volver a los módulos
           </Link>
       </Button>
 
@@ -156,8 +156,8 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
       <Tabs value={activeTab} onValueChange={setActiveTab} className="mt-6">
         <div className="flex items-center justify-between">
             <TabsList>
-              <TabsTrigger value="content">Conteúdo</TabsTrigger>
-              <TabsTrigger value="lessons">Aulas</TabsTrigger>
+              <TabsTrigger value="content">Contenido</TabsTrigger>
+              <TabsTrigger value="lessons">Lecciones</TabsTrigger>
             </TabsList>
             <div className='flex items-center gap-4'>
                 <Button variant="ghost" size="icon">
@@ -171,7 +171,7 @@ export default function LessonPage({ params }: { params: Promise<{ courseId: str
                       onCheckedChange={() => toggleLessonCompleted(activeLesson.id)}
                     />
                     <Label htmlFor={`completed-${activeLesson.id}`} className="text-sm font-medium leading-none cursor-pointer">
-                      Marcar como concluída
+                      Marcar como completada
                     </Label>
                 </div>
             </div>

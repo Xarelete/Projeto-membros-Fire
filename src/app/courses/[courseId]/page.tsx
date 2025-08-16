@@ -96,7 +96,7 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
             <div className='flex items-center gap-4'>
                 <p className="font-semibold">{course.modules.length} Módulos</p>
                 <span className="text-white/50">&bull;</span>
-                <p className="font-semibold">{totalLessons} Aulas</p>
+                <p className="font-semibold">{totalLessons} Lecciones</p>
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
                     { !isAuthenticated ? (
                        <Button asChild size="lg" className="w-full group bg-gradient-to-r from-orange-500 to-amber-500 text-white font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg">
                            <Link href="/login">
-                                Inicie sessão para acessar <Lock className="ml-2 h-5 w-5" />
+                                Inicia sesión para acceder <Lock className="ml-2 h-5 w-5" />
                            </Link>
                        </Button>
                     ) : (
@@ -130,11 +130,11 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
                             >
                                 {course.purchased ? (
                                     <>
-                                        Começar Curso <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+                                        Empezar Curso <PlayCircle className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                                     </>
                                 ) : (
                                     <>
-                                        Comprar Agora <Lock className="ml-2 h-5 w-5" />
+                                        Comprar Ahora <Lock className="ml-2 h-5 w-5" />
                                     </>
                                 )}
                             </Button>
@@ -142,7 +142,7 @@ export default function CoursePreviewPage({ params }: { params: Promise<{ course
                                 <Button asChild variant="outline" size="lg" className="w-full">
                                     <Link href="/">
                                         <ArrowLeft className="mr-2 h-5 w-5" />
-                                        Voltar ao Início
+                                        Volver al Inicio
                                     </Link>
                                 </Button>
                             )}

@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react";
+
 export type Lesson = {
   id: string;
   title: string;
