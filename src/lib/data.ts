@@ -68,6 +68,7 @@ export const courses: Course[] = [
       {
         id: 'module-3',
         title: 'Módulo 3 - Estrategias de Monetización',
+        isLocked: true,
         lessons: [
           {
             id: 'lesson-3-1',
@@ -82,6 +83,7 @@ export const courses: Course[] = [
       {
         id: 'module-4',
         title: 'Módulo 4 - Empezando de Cero en la Práctica',
+        isLocked: true,
         lessons: [
           {
             id: 'lesson-4-1',
@@ -96,6 +98,7 @@ export const courses: Course[] = [
       {
         id: 'module-5',
         title: 'Módulo 5 - Técnicas Avanzadas',
+        isLocked: true,
         lessons: [
           {
             id: 'lesson-5-1',
