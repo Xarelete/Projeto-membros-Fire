@@ -22,7 +22,7 @@ export function CourseProgress({ course }: CourseProgressProps) {
       <div className="mt-4">
         <Progress value={0} className="w-full" />
         <p className="mt-2 text-xs text-muted-foreground">
-          Cargando progreso...
+          Carregando progresso...
         </p>
       </div>
     );
@@ -32,7 +32,7 @@ export function CourseProgress({ course }: CourseProgressProps) {
     <div className="mt-4">
       <Progress value={progressPercentage} className="w-full" />
       <p className="mt-2 text-xs text-muted-foreground">
-        {Math.round(progressPercentage)}% Completado
+        {Math.round(progressPercentage)}% Concluído
       </p>
     </div>
   );

@@ -29,7 +29,7 @@ export function ThemeToggle() {
           Claro
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('dark')}>
-          Oscuro
+          Escuro
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme('system')}>
           Sistema
